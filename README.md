@@ -1,25 +1,28 @@
+[![Grupo do WhatsApp](https://img.shields.io/badge/WhatsApp-Grupo%20Whazing-brightgreen.svg)](https://grupo.whazing.com.br)
 
-## CREAR SUBDOMINIO Y APUNTAR AL IP DE SU VPS
+## CRIAR SUBDOMINIO E APONTAR PARA O IP DA SUA VPS
 
-Probado en ubuntu 20 y 22
+Testado ubuntu 20 e 22
 
-Editar archivo config y poner contraseñas de su preferencia y su correo electrónico, dominios.
 
-Si desea instalar 2 instancias cambie el nombre de la instancia, puerto backend, puerto frontend y puerto_postgre_instancia, no debe utilizar los mismos puertos de otras instalaciones
+Editar arquivo config e colocar senhas de sua preferencia e seu email, dominios.
 
-La opción actualizar tomará la última versión del repositorio usado para instalar
+Se quiser instalar 2 instancia mudar nome da instancia, porta backend, porta frontend e porta_postgre_intancia, não deve utilizar mesmas portas de outras instalações
 
-Nunca use los puertos 80 y 443 para backend, utilice el puerto 3000 al 3100 y frontend 4000 al 4100
+A opção atualizar vai pegar ultima versao do repositorio usado para instalar
 
-## VERIFICAR PROPAGACIÓN DEL DOMINIO
+Nunca usar portas 80 e 443 para backend utilize porta 3000 a 3100 e frontend 4000 a 4100
+
+
+## CHECAR PROPAGAÇÃO DO DOMÍNIO
 
 https://dnschecker.org/
 
-## EJECUTAR LOS SIGUIENTES COMANDOS ##
+## RODAR OS COMANDOS ABAIXO ##
 
-Antes de iniciar verifique en el sitio arriba si propagó el dns. Para no tener error en la instalación
+Antes de iniciar verifique no site acima se propagou o dns. Para não ter erro na instalaçao
 
-Para evitar errores se recomienda actualizar el sistema y después de actualizar reiniciar para evitar errores
+Para evitar erros recomendados atualizar sistema e apos atualizar reniciar para evitar erros
 
 ```bash
 apt -y update && apt -y upgrade
@@ -28,66 +31,72 @@ apt -y update && apt -y upgrade
 reboot
 ```
 
-Después de reiniciar siga con la instalación
+ 
+Depois reniciar seguir com a instalacao
 
 ```bash
 cd /root
 ```
 ```bash
-git clone https://github.com/basorastudio/remoto.git remoto
+git clone https://github.com/cleitonme/izing.instalador.git izinginstalador
 ```
-Editar datos con sus datos, con nano para guardar presione Ctrl + x
+Editar dados com seus dados, com nano para salvar aperta Ctrl + x
 
-Puede definir el timezone deseado usando la variable de entorno TIMEZONE. Si no se informa, el sistema usará el timezone por defecto: America/Sao_Paulo.
+Você pode definir o timezone desejado usando a variável de ambiente TIMEZONE. Caso não seja informado, o sistema usará o timezone padrão: America/Sao_Paulo.
 ```bash
-nano ./remoto/config
+nano ./izinginstalador/config
 ```
 
 ```bash
-sudo chmod +x ./remoto/izing
+sudo chmod +x ./izinginstalador/izing
 ```
 ```bash
-cd ./remoto
+cd ./izinginstalador
 ```
 ```bash
 sudo ./izing
 ```
 
-## ¿Problemas de conexión con whatsapp? ##
+## Problemas conexão whatsapp? ##
 
-Intente actualizar el Conector WWebJS whatsapp.js
-
-## Recomendación de instalar y dejar el Firewall activado
-
-Su servidor puede sufrir ataques externos que hacen que el sistema se bloquee y tenga caídas, por favor instale y mantenga el firewall activado.
-Utilizado UFW para saber más busque en google.
+Tente atualizar o Conector WWebJS whatsapp.js
 
 
-## Cambiar Frontend
+## Recomendação de instalar e deixar Firewall ativado
 
-Para cambiar el nombre de la aplicación:
+Seu servidor pode sofrer ataques externos que fazem sistema travar e ter quedas por favor instale e mantenha o firewall ativado.
+Utilizado UFW para saber mais de pesquisada no google.
+
+## Instalando
+Seguem links sugerimos:
+-  [Como usar autoinstalador do IZING - Video](https://youtu.be/-Woqu4W5Zzs?si=jcZYX3yPL60XkAd_)
+-  [Como usar autoinstalador do IZING - Video opção 2](https://youtu.be/bZ-jXRtcGyc?si=B8oQxv0V0V36fgrF)
+
+## Alterar Frontend
+
+Para mudar nome do aplicativo:
 
 /home/deploy/izing.io/frontend/quasar.conf
 
 /home/deploy/izing.io/frontend/src/index.template.html
 
-Para cambiar logos e iconos:
+Para alterar logos e icones:
 
-carpeta /home/deploy/izing.io/frontend/public
+pasta /home/deploy/izing.io/frontend/public
 
-Para cambiar colores:
+Para alterar cores:
 
 /home/deploy/izing.io/frontend/src/css/app.sass
 
 /home/deploy/izing.io/frontend/src/css/quasar.variables.sass
 
-Siempre cambiar usando el usuario deploy, puede conectar el servidor con la aplicación Bitvise SSH Client. Después de los cambios compilar nuevamente el Frontend
+Sempre alterar usando usuario deploy você pode conectar servidor com aplicativo Bitvise SSH Client. Depois das alterações compilar novamente o Frontend
 
 ```bash
 su deploy
 ```
 ```bash
-cd /home/deploy/carpetaondeestainstalado/frontend/
+cd /home/deploy/pastaondetainstalado/frontend/
 ```
 ```bash
 export NODE_OPTIONS=--openssl-legacy-provider
@@ -96,9 +105,9 @@ export NODE_OPTIONS=--openssl-legacy-provider
 npx quasar build -P -m pwa
 ```
 
-Probar los cambios en una pestaña anónima
+Testar as alterações em aba anonima
 
-## Errores
+## Erros
 
 "Internal server error: SequelizeConnectionError: could not open file \"global/pg_filenode.map\": Permission denied"
 
@@ -112,11 +121,31 @@ docker exec -u root postgresql bash -c "chown -R postgres:postgres /var/lib/post
 docker container restart postgresql
 ```
 
-## Acceso Portainer generar contraseña
-"Su instancia de Portainer se agotó por motivos de seguridad. Para volver a habilitar su instancia de Portainer, deberá reiniciar Portainer."
+## Acesso Portainer gerar senha
+"Your Portainer instance timed out for security purposes. To re-enable your Portainer instance, you will need to restart Portainer."
 
 ```bash
 docker container restart portainer
 ```
 
-Después acceda nuevamente a la url http://suip:9000/
+Depois acesse novamente url http://seuip:9000/
+
+
+## Recomendação de VPS boa e barata
+
+-  [Powerful cloud VPS & Web hosting.](https://control.peramix.com/?affid=58)
+
+- Cupom 25% desconto "WHAZING"
+
+```bash
+WHAZING
+```
+#### Curtiu? Apoie o projeto!! Com sua doação, será possível continuar com as atualizações. Segue QR code (PIX)  
+
+[<img src="donate.jpg" height="160" width="180"/>](donate.jpg)
+
+## Consultoria particular
+
+Para quem gostaria de uma consultoria ou que eu faça instalação pode chamar no whatsapp (será cobrado por isso) 48 999416725 
+
+-  [Nova Versão com API Bayles](https://github.com/cleitonme/Whazing-SaaS.instalador)
