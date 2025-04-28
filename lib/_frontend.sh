@@ -1,15 +1,15 @@
 #!/bin/bash
 # 
-# funciones para configurar el frontend de la aplicación
+# functions for setting up app frontend
 
 #######################################
-# paquetes de node instalados
+# installed node packages
 # Arguments:
 #   None
 #######################################
 frontend_node_dependencies() {
   print_banner
-  printf "${WHITE} 💻 Instalando dependencias del frontend...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Instalando dependências do frontend...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -24,13 +24,13 @@ EOF
 }
 
 #######################################
-# compila el código del frontend
+# compiles frontend code
 # Arguments:
 #   None
 #######################################
 frontend_node_build() {
   print_banner
-  printf "${WHITE} 💻 Compilando el código del frontend...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Compilando o código do frontend...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -47,18 +47,18 @@ EOF
 
 
 #######################################
-# establece las variables de entorno del frontend
+# sets frontend environment variables
 # Arguments:
 #   None
 #######################################
 frontend_set_env() {
   print_banner
-  printf "${WHITE} 💻 Configurando variables de ambiente (frontend)...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Configurando variáveis de ambiente (frontend)...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
 
-  # asegurar idempotencia
+  # ensure idempotency
   backend_url=$(echo "${backend_url/https:\/\/}")
   backend_url=${backend_url%%/*}
   backend_url=https://$backend_url
@@ -74,20 +74,20 @@ EOF
 }
 
 #######################################
-# genera archivo server.js
+# gera arquivo server.js
 # 
 #   
 #######################################
 frontend_serverjs() {
   print_banner
-  printf "${WHITE} 💻 generar archivo server.js (frontend)...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 gerar arquivo server.js (frontend)...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
 
 sudo su - deploy << EOF
   cat <<[-]EOF > /home/deploy/${nome_instancia}/frontend/server.js
-// servidor express simple para ejecutar la compilación de producción del frontend;
+// simple express server to run frontend production build;
 const express = require('express')
 const path = require('path')
 const app = express()
@@ -103,14 +103,14 @@ EOF
 }
 
 #######################################
-# inicia el frontend usando pm2 en 
-# modo de producción.
+# starts frontend using pm2 in 
+# production mode.
 # Arguments:
 #   None
 #######################################
 frontend_start_pm2() {
   print_banner
-  printf "${WHITE} 💻 Iniciando pm2 (frontend)...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Iniciando pm2 (backend)...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -125,7 +125,7 @@ EOF
 }
 
 #######################################
-# configura nginx para el frontend
+# sets up nginx for frontend
 # Arguments:
 #   None
 #######################################

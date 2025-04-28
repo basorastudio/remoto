@@ -51,15 +51,15 @@ Erro_global () {
 inquiry_options() {
   
   print_banner
-  printf "${WHITE} 💻 ¿Qué necesitas hacer?${GRAY_LIGHT}"
+  printf "${WHITE} 💻 O que você precisa fazer?${GRAY_LIGHT}"
   printf "\n\n"
   printf "   [1] Instalar\n"
-  printf "   [2] Actualizar Conector WWebJS whatsapp.js\n"
-  printf "   [3] Instalar 2ª instancia\n"
-  printf "   [4] Actualizar Izing\n"
-  printf "   [5] Activar Firewall\n"
-  printf "   [6] Desactivar Firewall\n"
-  printf "   [7] Error global/pg_filenode.map\n"
+  printf "   [2] Atualizar Conector WWebJS whatsapp.js\n"
+  printf "   [3] Instalar 2 instancia\n"
+  printf "   [4] Atualizar Izing\n"
+  printf "   [5] Ativar Firewall\n"
+  printf "   [6] Desativar Firewall\n"
+  printf "   [7] Erro global/pg_filenode.map\n"
   printf "\n"
   read -p "> " option
 

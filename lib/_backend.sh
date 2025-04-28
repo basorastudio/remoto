@@ -1,15 +1,15 @@
 #!/bin/bash
 # 
-# funciones para configurar el backend de la aplicación
+# functions for setting up app backend
 
 #######################################
-# crea la base de datos docker
+# creates docker db
 # Arguments:
 #   None
 #######################################
 backend_db_create() {
   print_banner
-  printf "${WHITE} 💻 Creando base de datos...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Criando banco de dados...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -46,7 +46,7 @@ EOF
 }
 
 #######################################
-# instala chrome
+# install_chrome
 # Arguments:
 #   None
 #######################################
@@ -68,23 +68,23 @@ EOF
 }
 
 #######################################
-# establece la variable de entorno para el backend.
+# sets environment variable for backend.
 # Arguments:
 #   None
 #######################################
 backend_set_env() {
   print_banner
-  printf "${WHITE} 💻 Configurando variables de entorno (backend)...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Configurando variáveis de ambiente (backend)...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
 
-  # asegurar idempotencia
+  # ensure idempotency
   backend_url=$(echo "${backend_url/https:\/\/}")
   backend_url=${backend_url%%/*}
   backend_url=https://$backend_url
 
-  # asegurar idempotencia
+  # ensure idempotency
   frontend_url=$(echo "${frontend_url/https:\/\/}")
   frontend_url=${frontend_url%%/*}
   frontend_url=https://$frontend_url
@@ -101,7 +101,7 @@ FRONTEND_URL=${frontend_url}
 PROXY_PORT=443
 PORT=${backend_porta}
 
-# conexión con la base de datos
+# conexão com o banco de dados
 DB_DIALECT=postgres
 DB_PORT=${porta_postgre_intancia}
 DB_TIMEZONE=-03:00
@@ -110,11 +110,11 @@ POSTGRES_USER=izing
 POSTGRES_PASSWORD=${pg_pass}
 POSTGRES_DB=postgres
 
-# Claves para la encriptación del token jwt
+# Chaves para criptografia do token jwt
 JWT_SECRET=${jwt_secret}
 JWT_REFRESH_SECRET=${jwt_refresh_secret}
 
-# Datos de conexión con REDIS
+# Dados de conexão com o REDIS
 IO_REDIS_SERVER=localhost
 IO_REDIS_PASSWORD=${redis_pass}
 IO_REDIS_PORT=6379
@@ -123,43 +123,43 @@ IO_REDIS_DB_SESSION=2
 #CHROME_BIN=/usr/bin/google-chrome
 CHROME_BIN=/usr/bin/google-chrome-stable
 
-# tiempo para aleatorizar el mensaje de horario de funcionamiento
+# tempo para randomização da mensagem de horário de funcionamento
 MIN_SLEEP_BUSINESS_HOURS=10000
 MAX_SLEEP_BUSINESS_HOURS=20000
 
-# tiempo para aleatorizar los mensajes del bot
+# tempo para randomização das mensagens do bot
 MIN_SLEEP_AUTO_REPLY=4000
 MAX_SLEEP_AUTO_REPLY=6000
 
-# tiempo para aleatorizar los mensajes generales
+# tempo para randomização das mensagens gerais
 MIN_SLEEP_INTERVAL=2000
 MAX_SLEEP_INTERVAL=5000
 
-# datos de RabbitMQ / Para no usar, simplemente comente la variable AMQP_URL
+# dados do RabbitMQ / Para não utilizar, basta comentar a var AMQP_URL
 RABBITMQ_DEFAULT_USER=admin
 RABBITMQ_DEFAULT_PASS=123456
 # AMQP_URL='amqp://admin:123456@host.docker.internal:5672?connection_attempts=5&retry_delay=5'
 
-# api oficial (integración en desarrollo)
+# api oficial (integração em desenvolvimento)
 API_URL_360=https://waba-sandbox.360dialog.io
 
-# usado para mostrar opciones no disponibles normalmente.
+# usado para mosrar opções não disponíveis normalmente.
 ADMIN_DOMAIN=izing.io
 
-# Datos para la utilización del canal de facebook
+# Dados para utilização do canal do facebook
 FACEBOOK_APP_ID=3237415623048660
 FACEBOOK_APP_SECRET_KEY=3266214132b8c98ac59f3e957a5efeaaa13500
 
-# Forzar el uso de la versión definida a través de caché (https://wppconnect.io/pt-BR/whatsapp-versions/)
+# Forçar utilizar versão definida via cache (https://wppconnect.io/pt-BR/whatsapp-versions/)
 #WEB_VERSION=2.2409.2
 
-# Personalizar opciones del pool de conexiones DB
+# Customizar opções do pool de conexões DB
 #POSTGRES_POOL_MAX=100
 #POSTGRES_POOL_MIN=10
 #POSTGRES_POOL_ACQUIRE=30000
 #POSTGRES_POOL_IDLE=10000
 
-# Limitar Uso de Izing Usuario y Conexiones
+# Limitar Uso do Izing Usuario e Conexões
 USER_LIMIT=99
 CONNECTIONS_LIMIT=99
 [-]EOF
@@ -170,13 +170,13 @@ EOF
 
 
 #######################################
-# instala dependencias de node.js
+# installs node.js dependencies
 # Arguments:
 #   None
 #######################################
 backend_node_dependencies() {
   print_banner
-  printf "${WHITE} 💻 Instalando dependencias del backend...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Instalando dependências do backend...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -190,13 +190,13 @@ EOF
 }
 
 #######################################
-# compila el código del backend
+# compiles backend code
 # Arguments:
 #   None
 #######################################
 backend_node_build() {
   print_banner
-  printf "${WHITE} 💻 Compilando el código del backend...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Compilando o código do backend...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -210,13 +210,13 @@ EOF
 }
 
 #######################################
-# actualiza whatsapp.js
+# updates whatsapp.js
 # Arguments:
 #   None
 #######################################
 whatsappweb_update() {
   print_banner
-  printf "${WHITE} 💻 Actualizando whatsapp.js...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Atualizando o whatsapp.js...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -249,13 +249,13 @@ EOF
 }
 
 #######################################
-# actualiza izing
+# updates izing
 # Arguments:
 #   None
 #######################################
 git_update() {
   print_banner
-  printf "${WHITE} 💻 Actualizando izing desde git...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Atualizando o izing do git...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -272,13 +272,13 @@ EOF
 }
 
 #######################################
-# ejecuta db migrate
+# runs db migrate
 # Arguments:
 #   None
 #######################################
 backend_db_migrate() {
   print_banner
-  printf "${WHITE} 💻 Ejecutando db:migrate...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Executando db:migrate...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -292,13 +292,13 @@ EOF
 }
 
 #######################################
-# ejecuta db seed
+# runs db seed
 # Arguments:
 #   None
 #######################################
 backend_db_seed() {
   print_banner
-  printf "${WHITE} 💻 Ejecutando db:seed...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Executando db:seed...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -312,8 +312,8 @@ EOF
 }
 
 #######################################
-# inicia el backend usando pm2 en 
-# modo de producción.
+# starts backend using pm2 in 
+# production mode.
 # Arguments:
 #   None
 #######################################
@@ -334,7 +334,7 @@ EOF
 }
 
 #######################################
-# configura nginx para el backend
+# updates frontend code
 # Arguments:
 #   None
 #######################################
